@@ -90,8 +90,8 @@ class MinHeap:
 
         parents_index = 0
         parents_value = self.heap.get_at_index(parents_index)
-        children1_index = 0
-        children2_index = 0
+        children1_index = 1
+        children2_index = 2
         minimum_index = self.min_index(children1_index, children2_index)
         minimum_value = self.heap.get_at_index(minimum_index)
 
@@ -163,6 +163,9 @@ class MinHeap:
 
         if index2 > self.heap.length() - 1 and index1 < self.heap.length():
             return index1
+
+        if index2 > self.heap.length() - 1 and index1 > self.heap.length() - 1:
+            return 0
 
         value1 = self.heap.get_at_index(index1)
         value2 = self.heap.get_at_index(index2)
