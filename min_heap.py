@@ -112,12 +112,12 @@ class MinHeap:
     # Pre-conditions:
     # Post-conditions: Built DynamicArray Hash Map
     def build_heap(self, da: DynamicArray) -> None:
-        dynamic_arrray2 = DynamicArray()
+        da2 = DynamicArray()
         for index in range(da.length()):
-            dynamic_arrray2.append(da.get_at_index(index))
+            da2.append(da.get_at_index(index))
 
-        if dynamic_arrray2.length() < 2:
-            self.heap = dynamic_arrray2
+        if da2.length() < 2:
+            self.heap = da2
             return
 
         counter = 0
@@ -125,7 +125,7 @@ class MinHeap:
 
         while root_bool == False:
             if counter == 0:
-                parents_outer_index = ((dynamic_arrray2.length() // 2) - 1)
+                parents_outer_index = ((da2.length() // 2) - 1)
             else:
                 parents_outer_index = parents_outer_index - 1
 
@@ -133,24 +133,24 @@ class MinHeap:
                 root_bool = True
 
             parents_index = parents_outer_index
-            parents_value = dynamic_arrray2.get_at_index(parents_index)
+            parents_value = da2.get_at_index(parents_index)
             children1_index = (2 * parents_outer_index) + 1
             children2_index = (2 * parents_outer_index) + 2
-            minimum_index = self.min_index_dynamic_array(children2_index, children2_index, dynamic_arrray2)
-            minimum_value = dynamic_arrray2.get_at_index(minimum_index)
+            minimum_index = self.min_index_dynamic_array(children1_index, children2_index, da2)
+            minimum_value = da2.get_at_index(minimum_index)
 
             counter += 1
 
-            while not self.out_of_range_dynamic_array(children1_index, children2_index, dynamic_arrray2) and parents_value > minimum_value:
-                dynamic_arrray2.swap(parents_index, minimum_index)
+            while not self.out_of_range_dynamic_array(children1_index, children2_index, da2) and parents_value > minimum_value:
+                da2.swap(parents_index, minimum_index)
                 parents_index = minimum_index
-                parents_value = dynamic_arrray2.get_at_index(parents_index)
+                parents_value = da2.get_at_index(parents_index)
                 children1_index = (2 * parents_index) + 1
                 children2_index = (2 * parents_index) + 2
-                minimum_index = self.min_index_dynamic_array(children1_index, children2_index, dynamic_arrray2)
-                minimum_value = dynamic_arrray2.get_at_index(minimum_index)
+                minimum_index = self.min_index_dynamic_array(children1_index, children2_index, da2)
+                minimum_value = da2.get_at_index(minimum_index)
 
-            self.heap = dynamic_arrray2
+            self.heap = da2
 
     # Function: min_index
     # Description: Dependencies for remove_min
